@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "tonc.h": "c",
+        "tonc_types.h": "c",
+        "overlay_number.h": "c",
+        "overlay_hex.h": "c",
+        "load_sprites.h": "c",
+        "tonc_video.h": "c",
+        "string.h": "c"
+    }
+}

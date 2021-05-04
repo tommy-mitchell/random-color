@@ -1,0 +1,58 @@
+
+
+
+// main "thread" is colors set by changing palette -> just cycle through
+    // press start to see hex and maybe number?
+
+// stored is a list
+    // press start to see hex and number in list, as well as the fact that you're in the list
+        // maybe have a way to save a palette as another list??
+
+// U/D arrows cycle between lists
+// R/L arrows cycle between colors
+
+
+
+add a lookup table: 15bit color to hex value
+    then just display the looked up value instead of calculating
+
+    i.e.
+
+    tte_write(LookUp_getHex(currentColor))
+
+bg pal[0] -> shows current color
+bg pal[1-7] -> stores any other needed color
+bg pal[8-255] -> stores the colors of the active Screen (so 248 colors max)
+
+load a new screen -> bg pal[8-255] = screen.pal, bg pal[0] = screen.pal[index]
+
+random Screen
+other Screens
+store others in an array (add to array whenever one is created?)
+random stored in main on its own
+input handler for random
+    dpad up -> go to others at index 0
+
+    dpad right -> bg pal[0] = new color, store in screen.pal, incr index
+        if screen.pal full -> move back to start and overwrite
+        copy pal to bg pal memory
+    
+    dpad left -> bg pal[0] = screen.pal[index - 1]
+        if index = 0 -> index = length - 1 (go to end)
+
+input handler for others
+    index++ -> go up
+    index-- -> go down
+        if index = -1 -> go to random
+
+
+UI_Objects -> all lists visible/invisible at the same time
+just handle moving up and down
+
+
+to handle moving screens: space between screens is filled with a large sprite (maybe "black screen")
+    maybe like just > 160px
+    once fully over screen, change bg pal to new screen's color
+    go at a high enough speed to not be annoying
+
+    maybe at lerp? sin lookup table
